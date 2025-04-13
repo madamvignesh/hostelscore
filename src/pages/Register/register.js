@@ -47,13 +47,13 @@ const Register = () => {
     let payload = {};
 
     if (role === 'customer') {
-      url = 'http://localhost:3001/api/auth/register/user';
+      url = 'https://hostelscore-b.onrender.com/api/auth/register/user';
       payload = customerData;
     } else if (role === 'hostelOwner') {
-      url = 'http://localhost:3001/api/auth/register/hostel';
+      url = 'https://hostelscore-b.onrender.com/api/auth/register/hostel';
       payload = hostelOwnerData;
     } else if (role === 'admin') {
-      url = 'http://localhost:3001/api/auth/register/admin';
+      url = 'https://hostelscore-b.onrender.com/api/auth/register/admin';
       payload = adminData;
     }
 
