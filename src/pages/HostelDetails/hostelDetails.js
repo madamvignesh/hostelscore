@@ -27,7 +27,15 @@ const HostelDetails = () => {
       return null;
     }
   };
-
+  const getUserTypeFromToken = (token) => {
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      return payload.id || payload.user_type; // Depends on your backend JWT structure
+    } catch (error) {
+      console.error("Invalid token:", error);
+      return null;
+    }
+  };
   if (!token) {
     navigator("/login");
   }
@@ -134,6 +142,7 @@ const HostelDetails = () => {
     }
   };
   
+  const user_type = getUserTypeFromToken(token);
 
   return (
     <div className="hostel-details-container">
@@ -157,7 +166,7 @@ const HostelDetails = () => {
           </div>
         </div>
 
-        <div className="rating-section">
+        {user_type === "Customer" && <div className="rating-section">
           <h3>Rate this Hostel</h3>
           <div className="stars">
             {[1, 2, 3, 4, 5].map((star) => (
@@ -170,7 +179,7 @@ const HostelDetails = () => {
               </span>
             ))}
           </div>
-        </div>
+        </div>}
 
         <h3>User Ratings</h3>
         {rateData ? (rateData.map((each) => {
