@@ -40,7 +40,7 @@ const ChangePassword = () => {
       }
 
       const response = await fetch(
-        "http://localhost:3001/api/change_password",
+        "https://hostelscore-b.onrender.com/api/change_password",
         {
           method: "PUT",
           headers: {

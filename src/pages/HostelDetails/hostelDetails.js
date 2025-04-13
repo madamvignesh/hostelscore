@@ -39,7 +39,7 @@ const HostelDetails = () => {
     const fetchHostelDetails = async () => {
       try {
         // Fetch Hostel by ID
-        const response = await fetch(`http://localhost:3001/api/hostels/${hotel_id}`,{
+        const response = await fetch(`https://hostelscore-b.onrender.com/api/hostels/${hotel_id}`,{
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const HostelDetails = () => {
 
         // Fetching the rating by the Hostel ID
 
-        const rateResponse = await fetch(`http://localhost:3001/api/hostellikes/${hotel_id}`,{
+        const rateResponse = await fetch(`https://hostelscore-b.onrender.com/api/hostellikes/${hotel_id}`,{
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -97,7 +97,7 @@ const HostelDetails = () => {
 
   const handleRating = async (star) => {
     try {
-      const url = `http://localhost:3001/api/liked/${hotel_id}`;
+      const url = `https://hostelscore-b.onrender.com/api/liked/${hotel_id}`;
       const options = {
         method: userLiked ? "PUT" : "POST",
         headers: {

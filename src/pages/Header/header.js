@@ -27,6 +27,18 @@ export default function Header() {
     };
   }, []);
 
+  const getUserIdFromToken = (token) => {
+    try {
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      return payload.id || payload.user_type; // Depends on your backend JWT structure
+    } catch (error) {
+      console.error("Invalid token:", error);
+      return null;
+    }
+  };
+
+  const user_type = getUserIdFromToken(localStorage.getItem("token"));
+
   return (
     <header className="header">
       <div className="header-container">
@@ -35,13 +47,25 @@ export default function Header() {
             <Building size={24} />
             <span>HostelScore</span>
           </Link>
+          {isAuthenticated && (
+            <nav className="nav-links">
+              <Link to="/hostels" className="nav-link">Hostels</Link>
+            </nav>
+          )}
         </div>
         <div className="header-right">
           {isAuthenticated ? (
             <div className="user-dropdown">
+              <div className="user-container">
+              {user_type === "Admin" && (
+                <Link to="/admin" className="admin-link">
+                  Admin Panel
+                </Link>
+              )}
               <button className="icon-btn">
                 <User size={20} />
               </button>
+              </div>
               <div className="dropdown-content">
                 <div className="dropdown-item">User</div>
                 <Link className="dropdown-item" to="/change-password">

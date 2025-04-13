@@ -19,7 +19,7 @@ const HostelList = () => {
         if (!token) {
           navigator("/login");
         }
-        let url = "http://localhost:3001/api/hostels";
+        let url = "https://hostelscore-b.onrender.com/api/hostels";
 
         // Add search parameter if searchTerm exists
         if (searchTerm) {

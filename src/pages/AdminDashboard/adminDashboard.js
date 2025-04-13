@@ -18,7 +18,7 @@ const AdminDashboard = () => {
     const fetchCustomers = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:3001/api/customers", {
+        const response = await fetch("https://hostelscore-b.onrender.com/api/customers", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!response.ok) throw new Error("Failed to fetch customers");
@@ -39,7 +39,7 @@ const AdminDashboard = () => {
     const fetchHostelLikes = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:3001/api/liked", {
+        const response = await fetch("https://hostelscore-b.onrender.com/api/liked", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!response.ok) throw new Error("Failed to fetch hostel likes");
@@ -115,10 +115,16 @@ const AdminDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th>{hostelLikes[0].avg_rating}</th>
-                  <th>{hostelLikes[0].total_rating}</th>
-                </tr>
+                {hostelLikes.length > 0 ? (
+                  <tr>
+                    <td>{hostelLikes[0].avg_rating}</td>
+                    <td>{hostelLikes[0].total_rating}</td>
+                  </tr>
+                ) : (
+                  <tr>
+                    <td colSpan="2">No data available</td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
